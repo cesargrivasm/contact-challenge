@@ -65,4 +65,13 @@ export class PersonUpdateComponent implements OnInit {
     trackUserById(index: number, item: IUser) {
         return item.id;
     }
+
+    save() {
+        this.isSaving = true;
+        if (this.person.id !== undefined) {
+            this.subscribeToSaveResponse(this.personService.update(this.person));
+        } else {
+            this.subscribeToSaveResponse(this.personService.create(this.person));
+        }
+    }
 }
